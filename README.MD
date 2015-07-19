@@ -2,8 +2,6 @@ rifUI
 ===================
 RifUI is a pure javascript library to generate html content easily. It is also possible to assign events and create bootstrap elements.
 
-[TOC]
-
 ----------
 ##What is it?
 RifUI is 100% free and opensource and it is available on our public CDN.
@@ -48,21 +46,7 @@ new a('<a href="#">Demo link</a>');
 
 ##Content generation Flow
 
-```sequence
-app->rifCore:load(page)
-rifCore->template:load(content)
-template->elements:loadElements(elements)
-elements->element:create(element)
-element->elements:html
-elements->template:html
-template->rifCore:html
-rifCore->app:html
-```
+![Alt text](http://jribo.kiwi/contents.png )
 
 ##Event listener generation Flow
-```sequence
-app->rifCore:Foreach event addEvent(event)
-rifCore->events:loadEvents(events)
-events->event:loadEvent(event)
-event->browser:addEventListener
-```
+![Alt text](http://jribo.kiwi/events.png )
