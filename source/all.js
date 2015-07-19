@@ -15,7 +15,6 @@
 				}
 			}
 		}
-
 		if(params !== undefined && typeof params === "object" && params.data !== undefined && Array.isArray(params.data)){
 			for(var j = 0; j < params.data.length; j++){
 				if(typeof params.data[j] === "object"){
@@ -23,7 +22,6 @@
 				}
 			}
 		}
-		
 		if(params !== undefined && typeof params === "object" && params.child !== undefined){
 			this.content.push('>');
 			this.content.push(params.child);
@@ -71,13 +69,24 @@
 
 	riframework.events.prototype.addEvent = function(params){
 		var element = null;
-		if(params.id !== undefined){
+		if(params['id'] !== undefined){
 			element = document.getElementById(params.id);
+			if(params.event !== undefined && params.callback !== undefined){
+				element.addEventListener(params.event,params.callback);
+				this.events.push(params);
+			}
+		}else if(params['class'] !== undefined){
+			element = document.getElementsByClassName(params['class']);
+			if(element.length>0 && Array.isArray(element)){
+				for(var i = 0; i < element.length; i++){
+					if(params.event !== undefined && params.callback !== undefined){
+						element[i].addEventListener(params.event,params.callback);
+						this.events.push(params);
+					}	
+				}
+			}
 		}
-		if(params.event !== undefined && params.callback !== undefined){
-			element.addEventListener(params.event,params.callback);
-			this.events.push(params);
-		}
+		
 	}
 	
 	riframework.core.prototype.load = function(content,callback,callback2){
@@ -600,6 +609,134 @@
 (function(rifCoreExtendedElements){
 	"use strict";
 
+	rifCoreExtendedElements.navbar = function navbar(params){
+		this.content = [];
+		var navbar = {};
+		if(params['class'] !== undefined){
+			navbar['class'] = params['class'];
+		}else{
+			if(params['type'] !== undefined){
+				navbar['class'] = 'navbar navbar-' + params['type'];
+			}
+		}
+		if(params['id']){
+			navbar['id'] = params['id'];
+		}
+		navbar['childs'] = [];
+		if(params['header']){
+			navbar['childs'].push(new div({
+				'class':'navbar-header',
+				'childs':[
+					new button({
+						'type':"button",
+						'class':params['header']['class'],
+						'attributes':[
+							{
+								'data-togle':'collapse',
+								'data-target':"#"+params['header']['target']
+							}
+						],
+						'childs':[
+							new span('<span class="sr-only">Toggle navigation</span>'),
+							new span('<span class="icon-bar"></span>'),
+							new span('<span class="icon-bar"></span>'),
+							new span('<span class="icon-bar"></span>')
+						]
+					}),
+					new a({
+						'class':'navbar-brand',
+						'href':params['header']['brand']['link'],
+						'childs':params['header']['brand']['childs']
+					})
+				]
+			}));
+		}
+		if(params.collapse !== undefined){
+			navbar['childs'].push(new div({
+				'class':'collapse navbar-collapse',
+				'id':params['header']['target'],
+				'childs':[
+					new ul({
+						'class':'nav navbar-nav',
+						'childs':params['collapse']['childs']
+					})
+				]
+			}));
+		}
+		this.content.push(navbar);
+	}
+
+	rifCoreExtendedElements.pills = function pills(params){
+		this.content = [];
+		var elements = {"class":"nav nav-pills"};
+		if(params['class'] !== undefined){
+			elements['class'] += " " + params['class'];
+		}
+		if(params['id'] !== undefined){
+			elements['id'] = params['id'];
+		}
+		if(params['childs'] !== undefined){
+			elements['childs'] = params['childs'];
+		}
+		this.content.push(new ul(elements));
+	}
+
+	rifCoreExtendedElements.nav_stacked = function nav_stacked(params){
+		this.content = [];
+		var elements = {"class":"nav nav-pills nav-stacked"};
+		if(params['class'] !== undefined){
+			elements['class'] += " " + params['class'];
+		}
+		if(params['id'] !== undefined){
+			elements['id'] = params['id'];
+		}
+		if(params['childs'] !== undefined){
+			elements['childs'] = params['childs'];
+		}
+		this.content.push(new ul(elements));
+	}
+
+	rifCoreExtendedElements.tabs = function tabs(params){
+		this.content = [];
+		var elements = {"class":"nav nav-tabs"};
+		if(params['class'] !== undefined){
+			elements['class'] += " " + params['class'];
+		}
+		if(params['id'] !== undefined){
+			elements['id'] = params['id'];
+		}
+		if(params['childs'] !== undefined){
+			elements['childs'] = params['childs'];
+		}
+		this.content.push(new ul(elements));
+	}
+
+	rifCoreExtendedElements.glyph = function glyph(params){
+		this.content = [];
+		var glyph = {};
+		if(params['icon'] !== undefined){
+			glyph['class'] = "glyphicon glyphicon-" + params['icon'];
+		}
+		if(params['childs'] !== undefined){
+			glyph['childs'] = params['childs'];
+		}
+		this.content.push(new span(glyph));
+	}
+
+	rifCoreExtendedElements.jumbotron = function jumbotron(childs){
+		this.content = [];
+		var divObj = {
+			'class':'jumbotron'
+		};
+		if(childs !== undefined && Array.isArray(childs)){
+			divObj['childs'] = [];
+			for(var i = 0; i < childs.length; i++){
+				divObj['childs'].push(childs[i]);
+			}
+		}
+		this.content.push(new div(divObj));
+	}
+
 	rifCoreExtendedElements.alert = function alert(type,hidden,message){
 		this.content = [];
 		this.content.push(new div({
@@ -640,5 +777,4 @@
 		}
 		this.content.push(new div(params));
 	}
-	
 }(this));

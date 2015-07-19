@@ -69,13 +69,24 @@
 
 	riframework.events.prototype.addEvent = function(params){
 		var element = null;
-		if(params.id !== undefined){
+		if(params['id'] !== undefined){
 			element = document.getElementById(params.id);
+			if(params.event !== undefined && params.callback !== undefined){
+				element.addEventListener(params.event,params.callback);
+				this.events.push(params);
+			}
+		}else if(params['class'] !== undefined){
+			element = document.getElementsByClassName(params['class']);
+			if(element.length>0 && Array.isArray(element)){
+				for(var i = 0; i < element.length; i++){
+					if(params.event !== undefined && params.callback !== undefined){
+						element[i].addEventListener(params.event,params.callback);
+						this.events.push(params);
+					}	
+				}
+			}
 		}
-		if(params.event !== undefined && params.callback !== undefined){
-			element.addEventListener(params.event,params.callback);
-			this.events.push(params);
-		}
+		
 	}
 	
 	riframework.core.prototype.load = function(content,callback,callback2){
