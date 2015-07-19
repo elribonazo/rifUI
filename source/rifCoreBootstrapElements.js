@@ -12,12 +12,12 @@
 		if(params['role'] !== undefined){
 			form['role'] = params['role'];
 		}
-		form['childs'] = [];
+		form['child'] = [];
 		if(params.fields !== undefined){
 			for(var i = 0; i < params['fields'].length; i++){
-				forms['childs'].push(new div({
+				forms['child'].push(new div({
 					'class':'form-group',
-					'childs':[params['fields'][i]]
+					'child':[params['fields'][i]]
 				}));
 			}
 		}
@@ -27,7 +27,7 @@
 		this.content = [];
 		this.content.push(new div({
 			'class':(params['class']!==undefined) ? params['class'] : 'page-header',
-			'childs':(params['childs']!==undefined) ? params['childs'] : []
+			'child':(params['child']!==undefined) ? params['child'] : []
 		}));
 	}
 
@@ -35,7 +35,7 @@
 		this.content = [];
 		this.content.push(new span({
 			'class':(params['class']!== undefined) ? params['class'] : 'badge',
-			'childs':(params['number']!==undefined) ? params['number'] : "0"
+			'child':(params['number']!==undefined) ? params['number'] : "0"
 		}));
 	}
 
@@ -43,17 +43,17 @@
 		this.content = [];
 		this.content.push(new span({
 			'class':(params['class']!== undefined) ? params['class'] : 'label label-default',
-			'childs':(params['childs']!==undefined) ? params['childs'] : []
+			'child':(params['child']!==undefined) ? params['child'] : []
 		}));
 	}
 
 	rifCoreExtendedElements.pagination = function pagination(params){
 		this.content = [];
 		this.content.push(new nav({
-			'childs':[
+			'child':[
 				new ul({
 					'class':(params['class']!==undefined) ? params['class']:'pagination',
-					'childs':(params['childs']!==undefined)?params['childs']:[]
+					'child':(params['child']!==undefined)?params['child']:[]
 				})
 			]
 		}))
@@ -63,7 +63,7 @@
 		this.content = [];
 		this.content.push(new ol({
 			'class':'breadcrumb',
-			'childs':(params.childs !== undefined) ? params.childs : []
+			'child':(params.child !== undefined) ? params.child : []
 		}));
 	}
 
@@ -80,11 +80,11 @@
 		if(params['id']){
 			navbar['id'] = params['id'];
 		}
-		navbar['childs'] = [];
+		navbar['child'] = [];
 		if(params['header']){
-			navbar['childs'].push(new div({
+			navbar['child'].push(new div({
 				'class':'navbar-header',
-				'childs':[
+				'child':[
 					new button({
 						'type':"button",
 						'class':params['header']['class'],
@@ -94,7 +94,7 @@
 								'data-target':"#"+params['header']['target']
 							}
 						],
-						'childs':[
+						'child':[
 							new span('<span class="sr-only">Toggle navigation</span>'),
 							new span('<span class="icon-bar"></span>'),
 							new span('<span class="icon-bar"></span>'),
@@ -104,19 +104,19 @@
 					new a({
 						'class':'navbar-brand',
 						'href':params['header']['brand']['link'],
-						'childs':params['header']['brand']['childs']
+						'child':params['header']['brand']['child']
 					})
 				]
 			}));
 		}
 		if(params.collapse !== undefined){
-			navbar['childs'].push(new div({
+			navbar['child'].push(new div({
 				'class':'collapse navbar-collapse',
 				'id':params['header']['target'],
-				'childs':[
+				'child':[
 					new ul({
 						'class':'nav navbar-nav',
-						'childs':params['collapse']['childs']
+						'child':params['collapse']['child']
 					})
 				]
 			}));
@@ -133,8 +133,8 @@
 		if(params['id'] !== undefined){
 			elements['id'] = params['id'];
 		}
-		if(params['childs'] !== undefined){
-			elements['childs'] = params['childs'];
+		if(params['child'] !== undefined){
+			elements['child'] = params['child'];
 		}
 		this.content.push(new ul(elements));
 	}
@@ -148,8 +148,8 @@
 		if(params['id'] !== undefined){
 			elements['id'] = params['id'];
 		}
-		if(params['childs'] !== undefined){
-			elements['childs'] = params['childs'];
+		if(params['child'] !== undefined){
+			elements['child'] = params['child'];
 		}
 		this.content.push(new ul(elements));
 	}
@@ -163,8 +163,8 @@
 		if(params['id'] !== undefined){
 			elements['id'] = params['id'];
 		}
-		if(params['childs'] !== undefined){
-			elements['childs'] = params['childs'];
+		if(params['child'] !== undefined){
+			elements['child'] = params['child'];
 		}
 		this.content.push(new ul(elements));
 	}
@@ -175,21 +175,21 @@
 		if(params['icon'] !== undefined){
 			glyph['class'] = "glyphicon glyphicon-" + params['icon'];
 		}
-		if(params['childs'] !== undefined){
-			glyph['childs'] = params['childs'];
+		if(params['child'] !== undefined){
+			glyph['child'] = params['child'];
 		}
 		this.content.push(new span(glyph));
 	}
 
-	rifCoreExtendedElements.jumbotron = function jumbotron(childs){
+	rifCoreExtendedElements.jumbotron = function jumbotron(child){
 		this.content = [];
 		var divObj = {
 			'class':'jumbotron'
 		};
-		if(childs !== undefined && Array.isArray(childs)){
-			divObj['childs'] = [];
-			for(var i = 0; i < childs.length; i++){
-				divObj['childs'].push(childs[i]);
+		if(child !== undefined && Array.isArray(child)){
+			divObj['child'] = [];
+			for(var i = 0; i < child.length; i++){
+				divObj['child'].push(child[i]);
 			}
 		}
 		this.content.push(new div(divObj));
