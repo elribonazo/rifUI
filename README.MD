@@ -103,4 +103,5 @@ e.addEvent({
 ![Alt text](http://jribo.kiwi/events.png )
 
 #Credits
+Francisco Javier Ribó Labrador, info@jribo.kiwi
 > - [http://jribo.kiwi](Francisco Javier Ribó Labrador, info@jribo.kiwi)
