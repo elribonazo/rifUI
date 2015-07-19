@@ -9,14 +9,19 @@ NO JQUERY REQUIRED but the library also works perfectly on jQuery.
 RifUI is 100% free and opensource and it is available on our public CDN.
 
 > **Note:**
-
+> - Faster minimized version for production environments
 > - [//cdn1.jribo.kiwi/rifUI.js](http://cdn1.jribo.kiwi/rifUI.js)
 > - [//cdn2.jribo.kiwi/rifUI.js](http://cdn2.jribo.kiwi/rifUI.js)
 > - [//cdn3.jribo.kiwi/rifUI.js](http://cdn3.jribo.kiwi/rifUI.js)
+> - Normal version for testing or extended development
+> - [//cdn1.jribo.kiwi/all.js](http://cdn1.jribo.kiwi/all.js)
+> - Separate version for testing or extended development
+> - [//cdn1.jribo.kiwi/rifCoreBootstrapElements.js](http://cdn1.jribo.kiwi/rifCoreBootstrapElements.js)
+> - [//cdn1.jribo.kiwi/rifCoreElements.js](http://cdn1.jribo.kiwi/rifCoreElements.js)
+> - [//cdn1.jribo.kiwi/rifCore.js](http://cdn1.jribo.kiwi/rifCore.js)
 
 ----------
 ##  Start a project
-
 To start using rifUI on your framework you must include the script as the following:
 
 ```
