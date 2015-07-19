@@ -1,0 +1,2 @@
+https://developers.google.com/closure/compiler/docs/compilation_levels
+java -jar compiler.jar --js all-source.js --js_output_file compiled.js
