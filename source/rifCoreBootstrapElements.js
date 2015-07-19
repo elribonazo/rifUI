@@ -1,6 +1,72 @@
 (function(rifCoreExtendedElements){
 	"use strict";
 
+	rifCoreExtendedElements.navBarForm = function navBarForm(params){
+		this.content = [];
+		var form = {};
+		if(params['class'] !== undefined){
+			form['class'] = params['class'];
+		}else{
+			form['class'] = "navbar-form navbar-left";
+		}
+		if(params['role'] !== undefined){
+			form['role'] = params['role'];
+		}
+		form['childs'] = [];
+		if(params.fields !== undefined){
+			for(var i = 0; i < params['fields'].length; i++){
+				forms['childs'].push(new div({
+					'class':'form-group',
+					'childs':[params['fields'][i]]
+				}));
+			}
+		}
+	}
+
+	rifCoreExtendedElements.pageHeader = function pageHeader(params){
+		this.content = [];
+		this.content.push(new div({
+			'class':(params['class']!==undefined) ? params['class'] : 'page-header',
+			'childs':(params['childs']!==undefined) ? params['childs'] : []
+		}));
+	}
+
+	rifCoreExtendedElements.badge = function badge(params){
+		this.content = [];
+		this.content.push(new span({
+			'class':(params['class']!== undefined) ? params['class'] : 'badge',
+			'childs':(params['number']!==undefined) ? params['number'] : "0"
+		}));
+	}
+
+	rifCoreExtendedElements.extLabel = function extLabel(params){
+		this.content = [];
+		this.content.push(new span({
+			'class':(params['class']!== undefined) ? params['class'] : 'label label-default',
+			'childs':(params['childs']!==undefined) ? params['childs'] : []
+		}));
+	}
+
+	rifCoreExtendedElements.pagination = function pagination(params){
+		this.content = [];
+		this.content.push(new nav({
+			'childs':[
+				new ul({
+					'class':(params['class']!==undefined) ? params['class']:'pagination',
+					'childs':(params['childs']!==undefined)?params['childs']:[]
+				})
+			]
+		}))
+	}
+
+	rifCoreExtendedElements.breadcrumb = function breadcrumb(params){
+		this.content = [];
+		this.content.push(new ol({
+			'class':'breadcrumb',
+			'childs':(params.childs !== undefined) ? params.childs : []
+		}));
+	}
+
 	rifCoreExtendedElements.navbar = function navbar(params){
 		this.content = [];
 		var navbar = {};
